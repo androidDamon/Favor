@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.zhenglee.framework.network.OkRequest;
 import com.zhenglee.framework.res.annotation.LayoutResource;
 import com.zhenglee.framework.res.annotation.MenuResource;
 import com.zhenglee.framework.ui.utils.ViewInjector;
@@ -47,5 +48,11 @@ public class BaseActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        OkRequest.getInstance().cancelTag(this);
+        super.onDestroy();
     }
 }

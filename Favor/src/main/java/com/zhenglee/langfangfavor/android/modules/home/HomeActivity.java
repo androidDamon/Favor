@@ -190,7 +190,7 @@ public class HomeActivity extends BaseActivity implements ViewPager.OnPageChange
         }
 
         @Override
-        public android.support.v4.app.Fragment getItem(int position) {
+        public Fragment getItem(int position) {
             return this.fragments.get(position);
         }
 

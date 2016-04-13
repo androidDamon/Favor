@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.zhenglee.framework.network.OkRequest;
 import com.zhenglee.framework.res.annotation.LayoutResource;
 import com.zhenglee.framework.res.annotation.MenuResource;
 import com.zhenglee.framework.ui.utils.ViewInjector;
@@ -59,11 +60,9 @@ public abstract class BaseFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-
-
     @Override
-    public void onDetach() {
+    public void onDestroy() {
+        OkRequest.getInstance().cancelTag(this);
         super.onDestroy();
     }
-
 }

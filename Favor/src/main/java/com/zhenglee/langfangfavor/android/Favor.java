@@ -1,9 +1,11 @@
 package com.zhenglee.langfangfavor.android;
 
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import com.zhenglee.framework.ApplicationContext;
 import com.zhenglee.framework.business.BusinessContext;
+import com.zhenglee.langfangfavor.R;
 import com.zhenglee.langfangfavor.android.modules.persistence.FavorPersistenceManager;
 
 import org.slf4j.Logger;
@@ -40,7 +42,7 @@ public class Favor extends ApplicationContext implements BusinessContext, Shared
 
     @Override
     public void onCreate() {
-//        PreferenceManager.setDefaultValues(this, R.xml.favor, true);
+        PreferenceManager.setDefaultValues(this, R.xml.favor, true);
 
         super.onCreate();
     }

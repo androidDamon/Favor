@@ -26,8 +26,9 @@
         android:layout_marginTop="4dp"
         android:layout_marginLeft="-10dp"
         android:background="@drawable/bg_oval"
-        android:textColor="#fff"
+        android:textColor="#000"
         android:textSize="@dimen/font_10"
-        android:visibility="gone" />
+        android:text="5"
+        android:visibility="visible" />
 
 </LinearLayout>
