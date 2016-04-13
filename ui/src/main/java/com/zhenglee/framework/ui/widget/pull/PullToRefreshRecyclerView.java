@@ -12,16 +12,18 @@ import com.zhenglee.framework.ui.widget.pull.layoutmanager.ILayoutManager;
 
 
 public class PullToRefreshRecyclerView extends FrameLayout implements SwipeRefreshLayout.OnRefreshListener {
-    private SwipeRefreshLayout mSwipeRefreshLayout;
-    private RecyclerView mRecyclerView;
+
+    public static final int ACTION_IDLE = 0;
     public static final int ACTION_PULL_TO_REFRESH = 1;
     public static final int ACTION_LOAD_MORE_REFRESH = 2;
-    public static final int ACTION_IDLE = 0;
+
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private RecyclerView recyclerView;
     private OnRecyclerRefreshListener listener;
-    private int mCurrentState = ACTION_IDLE;
+    private int currentState = ACTION_IDLE;
     private boolean isLoadMoreEnabled = false;
     private boolean isPullToRefreshEnabled = true;
-    private ILayoutManager mLayoutManager;
+    private ILayoutManager layoutManager;
     private BaseListAdapter adapter;
 
     public PullToRefreshRecyclerView(Context context) {
@@ -40,11 +42,11 @@ public class PullToRefreshRecyclerView extends FrameLayout implements SwipeRefre
     }
 
     private void setUpView() {
-        LayoutInflater.from(getContext()).inflate(R.layout.widget_pull_to_refresh, this, true);
-        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
-        mSwipeRefreshLayout.setOnRefreshListener(this);
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        LayoutInflater.from(getContext()).inflate(R.layout.pull_to_refresh, this, true);
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout.setOnRefreshListener(this);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
@@ -53,10 +55,10 @@ public class PullToRefreshRecyclerView extends FrameLayout implements SwipeRefre
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                if (mCurrentState == ACTION_IDLE && isLoadMoreEnabled && checkIfNeedLoadMore()) {
-                    mCurrentState = ACTION_LOAD_MORE_REFRESH;
+                if (currentState == ACTION_IDLE && isLoadMoreEnabled && checkIfNeedLoadMore()) {
+                    currentState = ACTION_LOAD_MORE_REFRESH;
                     adapter.onLoadMoreStateChanged(true);
-                    mSwipeRefreshLayout.setEnabled(false);
+                    swipeRefreshLayout.setEnabled(false);
                     listener.onRefresh(ACTION_LOAD_MORE_REFRESH);
                 }
             }
@@ -64,8 +66,8 @@ public class PullToRefreshRecyclerView extends FrameLayout implements SwipeRefre
     }
 
     private boolean checkIfNeedLoadMore() {
-        int lastVisibleItemPosition = mLayoutManager.findLastVisiblePosition();
-        int totalCount = mLayoutManager.getLayoutManager().getItemCount();
+        int lastVisibleItemPosition = layoutManager.findLastVisiblePosition();
+        int totalCount = layoutManager.getLayoutManager().getItemCount();
         return totalCount - lastVisibleItemPosition < 5;
     }
 
@@ -75,31 +77,31 @@ public class PullToRefreshRecyclerView extends FrameLayout implements SwipeRefre
 
     public void enablePullToRefresh(boolean enable) {
         isPullToRefreshEnabled = enable;
-        mSwipeRefreshLayout.setEnabled(enable);
+        swipeRefreshLayout.setEnabled(enable);
     }
 
     public void setLayoutManager(ILayoutManager manager) {
-        this.mLayoutManager = manager;
-        mRecyclerView.setLayoutManager(manager.getLayoutManager());
+        this.layoutManager = manager;
+        recyclerView.setLayoutManager(manager.getLayoutManager());
     }
 
     public void addItemDecoration(RecyclerView.ItemDecoration decoration) {
         if (decoration != null) {
-            mRecyclerView.addItemDecoration(decoration);
+            recyclerView.addItemDecoration(decoration);
         }
     }
 
     public void setAdapter(BaseListAdapter adapter) {
         this.adapter = adapter;
-        mRecyclerView.setAdapter(adapter);
-        mLayoutManager.setUpAdapter(adapter);
+        recyclerView.setAdapter(adapter);
+        layoutManager.setUpAdapter(adapter);
     }
 
     public void setRefreshing() {
-        mSwipeRefreshLayout.post(new Runnable() {
+        swipeRefreshLayout.post(new Runnable() {
             @Override
             public void run() {
-                mSwipeRefreshLayout.setRefreshing(true);
+                swipeRefreshLayout.setRefreshing(true);
                 onRefresh();
             }
         });
@@ -111,27 +113,27 @@ public class PullToRefreshRecyclerView extends FrameLayout implements SwipeRefre
 
     @Override
     public void onRefresh() {
-        mCurrentState = ACTION_PULL_TO_REFRESH;
+        currentState = ACTION_PULL_TO_REFRESH;
         listener.onRefresh(ACTION_PULL_TO_REFRESH);
     }
 
     public void onRefreshCompleted() {
-        switch (mCurrentState) {
+        switch (currentState) {
             case ACTION_PULL_TO_REFRESH:
-                mSwipeRefreshLayout.setRefreshing(false);
+                swipeRefreshLayout.setRefreshing(false);
                 break;
             case ACTION_LOAD_MORE_REFRESH:
                 adapter.onLoadMoreStateChanged(false);
                 if (isPullToRefreshEnabled) {
-                    mSwipeRefreshLayout.setEnabled(true);
+                    swipeRefreshLayout.setEnabled(true);
                 }
                 break;
         }
-        mCurrentState = ACTION_IDLE;
+        currentState = ACTION_IDLE;
     }
 
     public void setSelection(int position) {
-        mRecyclerView.scrollToPosition(position);
+        recyclerView.scrollToPosition(position);
     }
 
 

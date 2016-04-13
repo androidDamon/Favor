@@ -17,12 +17,12 @@
         app:logo="@drawable/ic_launcher"
         app:title="@string/app_name"/>
 
-    <com.zhenglee.framework.ui.ScrollableViewPager
+    <com.zhenglee.framework.ui.widget.ScrollableViewPager
         android:id="@+id/home_activity_tab_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        scrollableViewPager:scrollable="false"/>
+        scrollableViewPager:scrollable="true"/>
 
     <LinearLayout
         android:id="@+id/home_activity_tab_bar"

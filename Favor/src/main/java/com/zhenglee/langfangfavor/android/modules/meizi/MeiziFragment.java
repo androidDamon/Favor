@@ -22,15 +22,16 @@ import com.zhenglee.framework.ui.widget.pull.layoutmanager.MyLinearLayoutManager
 import com.zhenglee.langfangfavor.R;
 
 import java.util.ArrayList;
+
 @DrawableResource(R.drawable.ic_launcher)
 @StringResource(R.string.meizi)
 @LayoutResource(R.layout.fragment_meizi)
-public class MeiziFragment extends BaseFragment implements PullToRefreshRecyclerView.OnRecyclerRefreshListener{
+public class MeiziFragment extends BaseFragment implements PullToRefreshRecyclerView.OnRecyclerRefreshListener {
 
     @IdResource(R.id.fragment_meizi_recyclerview)
     private PullToRefreshRecyclerView pullToRefreshRecyclerView;
 
-    private ArrayList<String> mDataList;
+    private ArrayList<String> meiziList;
 
     private ListAdapter adapter;
 
@@ -58,7 +59,7 @@ public class MeiziFragment extends BaseFragment implements PullToRefreshRecycler
 //        return new DividerItemDecoration(getContext(), R.drawable.list_divider);
 //    }
 
-    public class ListAdapter extends BaseListAdapter {
+    private class ListAdapter extends BaseListAdapter {
 
         @Override
         protected BaseViewHolder onCreateNormalViewHolder(ViewGroup parent, int viewType) {
@@ -67,7 +68,7 @@ public class MeiziFragment extends BaseFragment implements PullToRefreshRecycler
 
         @Override
         protected int getDataCount() {
-            return mDataList != null ? mDataList.size() : 0;
+            return meiziList != null ? meiziList.size() : 0;
         }
 
         @Override
@@ -86,10 +87,6 @@ public class MeiziFragment extends BaseFragment implements PullToRefreshRecycler
         return new SampleViewHolder(view);
     }
 
-    protected boolean isSectionHeader(int position) {
-        return false;
-    }
-
     protected int getItemType(int position) {
         return 0;
     }
@@ -97,51 +94,46 @@ public class MeiziFragment extends BaseFragment implements PullToRefreshRecycler
 
     @Override
     public void onRefresh(final int action) {
-        if (mDataList == null) {
-            mDataList = new ArrayList<>();
+        if (meiziList == null) {
+            meiziList = new ArrayList<>();
         }
 
         pullToRefreshRecyclerView.postDelayed(new Runnable() {
             @Override
             public void run() {
                 if (action == PullToRefreshRecyclerView.ACTION_PULL_TO_REFRESH) {
-                    mDataList.clear();
+                    meiziList.clear();
                 }
-                int size = mDataList.size();
+                int size = meiziList.size();
                 for (int i = size; i < size + 20; i++) {
-                    mDataList.add(MeiziValues.images[i]);
+                    meiziList.add(MeiziValues.images[i]);
                 }
                 adapter.notifyDataSetChanged();
                 pullToRefreshRecyclerView.onRefreshCompleted();
-                if (mDataList.size() < 100) {
+                if (meiziList.size() < 100) {
                     pullToRefreshRecyclerView.enableLoadMore(true);
                 } else {
                     pullToRefreshRecyclerView.enableLoadMore(false);
                 }
             }
-        }, 3000);
+        }, 2000);
     }
 
-    class SampleViewHolder extends BaseViewHolder {
+    private final class SampleViewHolder extends BaseViewHolder {
 
-        ImageView mSampleListItemImg;
-        TextView mSampleListItemLabel;
+        private ImageView image;
+        private TextView label;
 
         public SampleViewHolder(View itemView) {
             super(itemView);
-            mSampleListItemLabel = (TextView) itemView.findViewById(R.id.mSampleListItemLabel);
-            mSampleListItemImg = (ImageView) itemView.findViewById(R.id.mSampleListItemImg);
+            label = (TextView) itemView.findViewById(R.id.mSampleListItemLabel);
+            image = (ImageView) itemView.findViewById(R.id.mSampleListItemImg);
         }
 
         @Override
         public void onBindViewHolder(int position) {
-            mSampleListItemLabel.setVisibility(View.GONE);
-            Glide.with(mSampleListItemImg.getContext())
-                    .load(mDataList.get(position))
-                    .centerCrop()
-                    .placeholder(R.color.colorPrimary)
-                    .crossFade()
-                    .into(mSampleListItemImg);
+            label.setVisibility(View.GONE);
+            Glide.with(image.getContext()).load(meiziList.get(position)).centerCrop().placeholder(R.color.colorPrimary).crossFade().into(image);
         }
 
         @Override

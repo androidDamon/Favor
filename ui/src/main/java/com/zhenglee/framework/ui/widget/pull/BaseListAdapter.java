@@ -12,6 +12,7 @@ import com.zhenglee.framework.ui.R;
 public abstract class BaseListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     protected static final int VIEW_TYPE_LOAD_MORE_FOOTER = 100;
+
     protected boolean isLoadMoreFooterShown;
 
     @Override
@@ -51,7 +52,7 @@ public abstract class BaseListAdapter extends RecyclerView.Adapter<BaseViewHolde
     protected abstract BaseViewHolder onCreateNormalViewHolder(ViewGroup parent, int viewType);
 
     protected BaseViewHolder onCreateLoadMoreFooterViewHolder(ViewGroup parent) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.widget_pull_to_refresh_footer, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.pull_to_refresh_footer, parent, false);
         return new LoadMoreFooterViewHolder(view);
     }
 
