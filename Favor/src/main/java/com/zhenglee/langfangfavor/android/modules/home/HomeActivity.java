@@ -25,6 +25,7 @@ import com.zhenglee.framework.ui.OnPageSelectedListener;
 import com.zhenglee.framework.utils.DimensionUtils;
 import com.zhenglee.langfangfavor.R;
 import com.zhenglee.langfangfavor.android.modules.home.annotation.Tag;
+import com.zhenglee.langfangfavor.android.modules.meizi.MeiziFragment;
 import com.zhenglee.langfangfavor.android.modules.news.NewsFragment;
 
 import java.util.ArrayList;
@@ -58,9 +59,9 @@ public class HomeActivity extends BaseActivity implements ViewPager.OnPageChange
 
         TABS = new Class[4];
         TABS[0] = NewsFragment.class;
-        TABS[1] = NewsFragment.class;
+        TABS[1] = MeiziFragment.class;
         TABS[2] = NewsFragment.class;
-        TABS[3] = NewsFragment.class;
+        TABS[3] = MeiziFragment.class;
 
         final Resources res = getResources();
         final LayoutInflater inflater = getLayoutInflater();
@@ -170,6 +171,7 @@ public class HomeActivity extends BaseActivity implements ViewPager.OnPageChange
 
         final StringResource sr = f.getClass().getAnnotation(StringResource.class);
         this.setTitle(sr.value());
+        this.toolbar.setSubtitle(sr.value());
     }
 
     @Override

@@ -11,7 +11,7 @@ import com.zhenglee.framework.ui.OnPageSelectedListener;
 import com.zhenglee.langfangfavor.R;
 
 @DrawableResource(R.drawable.ic_launcher)
-@StringResource(R.string.app_name)
+@StringResource(R.string.news)
 @LayoutResource(R.layout.fragment_news)
 public class NewsFragment extends BaseFragment implements OnPageSelectedListener{
 
