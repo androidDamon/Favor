@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@color/action_bar_divider" />
+    <item
+        android:bottom="1px"
+        android:drawable="@color/action_bar_background" />
+
+</layer-list>

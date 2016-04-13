@@ -13,9 +13,9 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.Favor">
-        <activity android:name=".android.main.MainActivity">
+        android:theme="@style/Favor.Base">
+        <activity android:name=".android.main.MainActivity"
+            android:theme="@style/Favor.Base.FullScreen.Transparent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -26,11 +26,12 @@
             android:name=".android.main.SplashActivity"
             android:noHistory="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Holo.Favor.SplashActivity">
+            android:theme="@style/Favor.Base.FullScreen">
         </activity>
         <activity android:name=".android.main.AboutActivity">
         </activity>
-        <activity android:name=".android.modules.home.HomeActivity">
+        <activity android:name=".android.modules.home.HomeActivity"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

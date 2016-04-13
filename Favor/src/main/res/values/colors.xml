@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Base -->
     <color name="colorPrimary">#F44336</color>
     <color name="colorPrimaryDark">#D32F2F</color>
     <color name="colorAccent">#D32F2F</color>
+
+    <!-- Global -->
+    <color name="text_default">#ffffff</color>
+    <color name="text_selected">#d60909</color>
+    <color name="action_bar_background">#b2000000</color>
+    <color name="action_bar_divider">#0cffffff</color>
+    <color name="window_background">#222222</color>
 </resources>
