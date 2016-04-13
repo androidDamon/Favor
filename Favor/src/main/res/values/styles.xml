@@ -1,50 +1,50 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="Favor.Base" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Favor.Base" parent="Theme.AppCompat">
         <!-- Customize your theme here. -->
-        <!--<item name="android:windowActionBar">false</item>-->
-        <!--<item name="android:windowNoTitle">true</item>-->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/text_colorPrimary</item>
+        <item name="android:windowBackground">@android:color/white</item>
     </style>
 
-    <style name="Favor.Base.FullScreen" parent="Favor.Base">
+    <style name="Favor.Base.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="Favor.Base.NoActionBar.FullScreen" parent="Favor.Base.NoActionBar">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
-    <style name="Favor.Base.FullScreen.Transparent" parent="Favor.Base.FullScreen">
+    <style name="Favor.Base.NoActionBar.FullScreen.Transparent" parent="Favor.Base.NoActionBar.FullScreen">
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
-    <style name="Theme.AppCompat.Light.Favor" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:logo">@drawable/ic_launcher</item>
-        <item name="android:actionBarSize">45dp</item>
-        <item name="android:actionBarStyle">@style/FavorActionBar</item>
-        <item name="android:actionMenuTextAppearance">@style/FavorActionBarTitleText</item>
-        <item name="android:windowBackground">@android:color/white</item>
+    <style name="Favor.Base.ToolBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/text_colorPrimary</item>
+        <!--<item name="android:windowBackground">@android:color/white</item>-->
     </style>
 
-    <style name="FavorActionBar" parent="Base.Widget.AppCompat.Toolbar">
+    <style name="FavorToolBar" parent="Base.Widget.AppCompat.Toolbar">
         <item name="android:shadowColor">@android:color/transparent</item>
+        <item name="android:titleTextStyle">@style/FavorToolBarTitleText</item>
     </style>
 
-    <style name="FavorActionBarTitleText">
+    <style name="FavorToolBarTitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:gravity">center</item>
         <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@android:color/holo_red_dark</item>
     </style>
 
     <style name="FavorActionBarOverFlow">
         <item name="android:paddingLeft">10dp</item>
         <item name="android:paddingRight">10dp</item>
-    </style>
-
-    <style name="Theme.Holo.Favor.SplashActivity" parent="@style/Theme.AppCompat.Light.Favor">
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
     </style>
 
 </resources>

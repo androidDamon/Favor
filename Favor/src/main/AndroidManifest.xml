@@ -15,7 +15,7 @@
         android:label="@string/app_name"
         android:theme="@style/Favor.Base">
         <activity android:name=".android.main.MainActivity"
-            android:theme="@style/Favor.Base.FullScreen.Transparent">
+            android:theme="@style/Favor.Base.NoActionBar.FullScreen.Transparent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -26,12 +26,13 @@
             android:name=".android.main.SplashActivity"
             android:noHistory="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Favor.Base.FullScreen">
+            android:theme="@style/Favor.Base.NoActionBar.FullScreen">
         </activity>
         <activity android:name=".android.main.AboutActivity">
         </activity>
         <activity android:name=".android.modules.home.HomeActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Favor.Base.ToolBar">
         </activity>
     </application>
 

@@ -22,6 +22,5 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':framework')
     compile 'com.android.support:appcompat-v7:23.0.1'
-    apt 'com.zhy:mpermission-compiler:1.0.0'
     compile 'com.zhy:mpermission-api:1.0.0'
 }

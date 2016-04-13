@@ -6,9 +6,13 @@
     <color name="colorAccent">#D32F2F</color>
 
     <!-- Global -->
-    <color name="text_default">#ffffff</color>
+    <color name="text_colorPrimary">#ffffffff</color>
     <color name="text_selected">#d60909</color>
     <color name="action_bar_background">#b2000000</color>
     <color name="action_bar_divider">#0cffffff</color>
     <color name="window_background">#222222</color>
+
+    <!-- Home Activity -->
+    <color name="home_activity_tab_bar_item_label_default">#999999</color>
+    <color name="home_activity_tab_bar_item_label_selected">#ffffffff</color>
 </resources>
