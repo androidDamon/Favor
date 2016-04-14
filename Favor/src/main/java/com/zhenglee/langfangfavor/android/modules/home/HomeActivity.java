@@ -26,7 +26,7 @@ import com.zhenglee.framework.utils.DimensionUtils;
 import com.zhenglee.langfangfavor.R;
 import com.zhenglee.langfangfavor.android.modules.home.annotation.Tag;
 import com.zhenglee.langfangfavor.android.modules.meizi.MeiziFragment;
-import com.zhenglee.langfangfavor.android.modules.news.NewsFragment;
+import com.zhenglee.langfangfavor.android.modules.news.ui.NewsFragment;
 
 import java.util.ArrayList;
 import java.util.List;

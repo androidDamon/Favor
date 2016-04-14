@@ -9,6 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.zhenglee.framework.network.OkRequest;
+import com.zhenglee.framework.network.cache.CacheMode;
+import com.zhenglee.framework.network.callback.StringCallback;
 import com.zhenglee.framework.res.annotation.DrawableResource;
 import com.zhenglee.framework.res.annotation.IdResource;
 import com.zhenglee.framework.res.annotation.LayoutResource;
@@ -22,6 +25,9 @@ import com.zhenglee.framework.ui.widget.pull.layoutmanager.MyLinearLayoutManager
 import com.zhenglee.langfangfavor.R;
 
 import java.util.ArrayList;
+
+import okhttp3.Request;
+import okhttp3.Response;
 
 @DrawableResource(R.drawable.ic_launcher)
 @StringResource(R.string.meizi)
@@ -94,8 +100,22 @@ public class MeiziFragment extends BaseFragment implements PullToRefreshRecycler
 
     @Override
     public void onRefresh(final int action) {
+//        OkRequest.get("http://c.m.163.com/nc/article/headline/T1348647909107/20-20.html").tag(this).execute(new StringCallback() {
+//            @Override
+//            public void onResponse(boolean isFromCache, String s, Request request, @Nullable Response response) {
+//
+//            }
+//        });
         if (meiziList == null) {
             meiziList = new ArrayList<>();
+        } else {
+            OkRequest ok = OkRequest.getInstance();
+            ok.get("http://server.jeasonlzy.com/OkHttpUtils/method").tag(this).cacheKey("adad").cacheMode(CacheMode.DEFAULT) .execute(new StringCallback() {
+            @Override
+            public void onResponse(boolean isFromCache, String s, Request request, @Nullable Response response) {
+
+            }
+        });
         }
 
         pullToRefreshRecyclerView.postDelayed(new Runnable() {

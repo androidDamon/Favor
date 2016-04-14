@@ -1,11 +1,11 @@
 package com.zhenglee.langfangfavor.android;
 
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import com.zhenglee.framework.ApplicationContext;
 import com.zhenglee.framework.business.BusinessContext;
-import com.zhenglee.langfangfavor.R;
+import com.zhenglee.framework.network.OkRequest;
+import com.zhenglee.framework.network.model.HttpHeaders;
 import com.zhenglee.langfangfavor.android.modules.persistence.FavorPersistenceManager;
 
 import org.slf4j.Logger;
@@ -42,9 +42,16 @@ public class Favor extends ApplicationContext implements BusinessContext, Shared
 
     @Override
     public void onCreate() {
-        PreferenceManager.setDefaultValues(this, R.xml.favor, true);
+//        PreferenceManager.setDefaultValues(this, R.xml.favor, true);
 
         super.onCreate();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.put("commonHeaderKey1", "commonHeaderValue1");
+        headers.put("commonHeaderKey2", "commonHeaderValue2");
+
+        OkRequest.init(this);
+        OkRequest.getInstance().debug("OkRequest").setConnectTimeout(10000).setReadTimeOut(10000).setWriteTimeOut(10000).addCommonHeaders(headers);
     }
 
     @Override
