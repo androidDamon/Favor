@@ -3,6 +3,7 @@ package com.zhenglee.langfangfavor.android.modules.news.ui;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.zhenglee.framework.network.OkRequest;
 import com.zhenglee.framework.network.callback.StringCallback;
 import com.zhenglee.framework.res.annotation.DrawableResource;
 import com.zhenglee.framework.res.annotation.LayoutResource;
@@ -22,12 +23,12 @@ public class NewsFragment extends BaseFragment implements OnPageSelectedListener
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-//        OkRequest.get("http://c.m.163.com/nc/article/headline/T1348647909107/20-20.html").tag(this).execute(new StringCallback() {
-//            @Override
-//            public void onResponse(boolean isFromCache, String s, Request request, @Nullable Response response) {
-//
-//            }
-//        });
+        OkRequest.get("http://c.m.163.com/nc/article/headline/T1348647909107/20-20.html").tag(this).execute(new StringCallback() {
+            @Override
+            public void onResponse(boolean isFromCache, String s, Request request, @Nullable Response response) {
+
+            }
+        });
     }
 
     @Override

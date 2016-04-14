@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.zhenglee.framework.network.OkRequest;
-import com.zhenglee.framework.network.cache.CacheMode;
 import com.zhenglee.framework.network.callback.StringCallback;
 import com.zhenglee.framework.res.annotation.DrawableResource;
 import com.zhenglee.framework.res.annotation.IdResource;
@@ -110,7 +109,7 @@ public class MeiziFragment extends BaseFragment implements PullToRefreshRecycler
             meiziList = new ArrayList<>();
         } else {
             OkRequest ok = OkRequest.getInstance();
-            ok.get("http://server.jeasonlzy.com/OkHttpUtils/method").tag(this).cacheKey("adad").cacheMode(CacheMode.DEFAULT) .execute(new StringCallback() {
+            ok.post("http://server.jeasonlzy.com/OkHttpUtils/method").tag(this).execute(new StringCallback() {
             @Override
             public void onResponse(boolean isFromCache, String s, Request request, @Nullable Response response) {
 
